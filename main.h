@@ -15,11 +15,10 @@
 #define BACKET_SIZE 64
 
 /**
- *struct entry_s - struct that hold key and value
- * of hash table
- *
- *@key: the key used to retrieve values
- *@value: the respective data for the key
+ *struct entry_s -  Structure representing a
+ key-value pair for environment variables.
+ *@key: The key (name) of the environment variable
+ *@value:  The value associated with the environment variable.
  */
 typedef struct entry_s
 {
@@ -28,11 +27,9 @@ typedef struct entry_s
 } entry_t;
 
 /**
- * enum status_actions_e - actions that will be applied to
- * status state management
- *
- * @UPDATE_STATUS: action to update status code
- * @GET_STATUS: action to retrieve status code
+ * enum status_actions_e -  Enumeration of status-related actions
+ * @UPDATE_STATUS: Action to update the status value.
+ * @GET_STATUS: Action to retrieve the current status value.
  */
 typedef enum status_actions_e
 {
@@ -41,10 +38,9 @@ typedef enum status_actions_e
 } status_actions_t;
 
 /**
- * struct list_s - node of linkedlist
- *
- * @data: linkedlist content
- * @next: next node
+ * struct list_s - Structure representing a singly-linked list node.
+ * @data: Data stored in the list node.
+ * @next: Pointer to the next node in the list.
  */
 typedef struct list_s
 {
@@ -53,11 +49,10 @@ typedef struct list_s
 } list_t;
 
 /**
- * enum command_type_e - types of command
- *
- * @BUILTINS: MEANS THAT COMMAND IS BUILTIN
- * @EXTERNAL: MEANS IT's AN EXTERNAL COMMAND
- * @NOT_FOUND: MEANS THAT COMMANS IS NOT FOUND
+ * enum command_type_e - Enumeration of command types.
+ * @BUILTINS: Represents a built-in command.
+ * @EXTERNAL: Represents an external (non-built-in) command.
+ * @NOT_FOUND: Represents a command that is not found.
  */
 typedef enum command_type_e
 {
@@ -66,12 +61,11 @@ typedef enum command_type_e
 	NOT_FOUND
 } command_type_t;
 /**
- * struct command_s - struct that holds informations
- * about command
- *
- * @name: name of the command
- * @arguments: command arguments
- * @type: type of the command
+ * struct command_s - Structure representing a shell command.
+ * @name: The name of the command or program to execute.
+ * @arguments: An array of arguments for the command
+ * @type: The type of the command
+ * (built-in, external, or not found)
  */
 typedef struct command_s
 {
@@ -80,13 +74,11 @@ typedef struct command_s
 	command_type_t type;
 } command_t;
 /**
- * struct builtin_s - builtin struct
- * that will contain name of builtins
- * and it respective function to be
- * executed
+ * struct builtin_s -  Structure representing a built-in shell command.
  *
- * @name: builtin name
- * @function: builtin function
+ * @name: The name of the built-in command.
+ * @function:  A function pointer to the implementation
+ * of the built-in command.
  *
  */
 typedef struct builtin_s
@@ -96,10 +88,11 @@ typedef struct builtin_s
 } builtin_t;
 
 /**
- * enum builtin_actions_e - builtin actions
- *
- * @GET_BUILTIN: action to get builtin function
- * @SET_BUILTIN: action to add new_buitin function
+ * enum builtin_actions_e - Enumeration of actions
+ * related to built-in commands.
+ * @GET_BUILTIN: Action to retrieve the function
+ * pointer of a built-in command.
+ * @SET_BUILTIN: Action to set and register a new built-in command
  */
 typedef enum builtin_actions_e
 {
@@ -107,10 +100,9 @@ typedef enum builtin_actions_e
 	SET_BUILTIN
 } builtin_actions_t;
 /**
- * struct map_s - defines a structure for a hash table
- *
- * @backets: an array of linkedlist where
- * our entry data will be stored
+ * struct map_s - Structure representing a simple hash map
+ * @backets:  An array of linked lists serving as buckets
+ * for hash table storage.
  */
 typedef struct map_s
 {
@@ -118,18 +110,18 @@ typedef struct map_s
 } map_t;
 
 /**
- * enum enviroment_action_e - actions that will be applied to
- * global enviroment
- *
- * @INIT_ENV: TO INITIALIZE ENVIROMENT VARIABLE
- * @SET_ENTRY: TO ADD NEW ENTRY TO ENVIROMENT VARIABLE
- * @GET_VALUE: TO RETRIEVE VALUE FROM ENVIROMENT VARIABLE
- * @GET_KEYS: TO GET ALL KEY THAT STORED INSIDE ENV VARIABLE
- * @CONVERT_INTO_2D: RETURNS 2D ARRAY CONTAINING ALL ENVIRONEMENT
- * VARIBALES (env)
- * @CLEAR_ENV: TO FREE AND CLEAR EVERYTHING INSIDE OF OUR
- * @DELETE_ENTRY: USED TO DELETE ENTRY FROM ENVIROMENT VARIABLE
- * ENV
+ * enum enviroment_action_e - Enumeration of actions related
+ * to environment management.
+ * @INIT_ENV: Action to initialize the environment.
+ * @SET_ENTRY: Action to set a key-value entry in the environment.
+ * @GET_VALUE: Action to get the value associated with a key
+ * from the environment.
+ * @GET_KEYS: Action to get a list of keys from the environment
+ * @CONVERT_INTO_2D: Action to convert the environment
+ * into a 2D array.
+ * @CLEAR_ENV: Action to clear and reset the environment.
+ * @DELETE_ENTRY: Action to delete an entry (key-value pair)
+ * from the environment.
  */
 typedef enum enviroment_action_e
 {
@@ -143,22 +135,16 @@ typedef enum enviroment_action_e
 } enviroment_action_t;
 
 /**
- * enum globals_action_e - actions to be applied to
- * some global states or variables
- *
- * @GET_LINE: action that allows to
- * get line
- * @GET_LINE_NUMBER: action that allows to get
- * current line number
- * @GET_SHELL_NAME: action that allows us to
- * get shell name
- * @SET_LINE: action that allow us to the line
- * @SET_SHELL_NAME: action allow us to set
- * shell name
- * @INCREMENT_LINE_NUMBER: action to increment
- * line number by one
- * @SET_2D: action that set 2d array
- * @GET_2D: action that get 2d array
+ * enum globals_action_e - Enumeration of actions related to
+ * global shell variables.
+ * @GET_LINE: Action to retrieve the current command line.
+ * @GET_LINE_NUMBER: Action to retrieve the current line number.
+ * @GET_SHELL_NAME: Action to retrieve the shell's name
+ * @SET_LINE: Action to set the current command line.
+ * @SET_SHELL_NAME: Action to set the shell's name.
+ * @INCREMENT_LINE_NUMBER: Action to increment the current line number
+ * @SET_2D: set a 2D array.
+ * @GET_2D: to retrieve a 2D array.
  */
 typedef enum globals_action_e
 {
