@@ -36,3 +36,4 @@ char *_get_command_from_path(char *command)
 	}
 	_free_split(&path_2d);
 	return (_strdup(command));
+}
