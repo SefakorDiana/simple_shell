@@ -9,14 +9,14 @@
  */
 char *_copy(char *dest, const char *src, size_t size)
 {
-	size_t iter;
+	size_t iterator;
 
-	iter = 0;
-	while (iter < size)
+	iterator = 0;
+	while (iterator < size)
 	{
-		dest[iter] = src[iter];
-		iter++;
+		dest[iterator] = src[iterator];
+		iterator++;
 	}
-	dest[iter] = 0;
+	dest[iterator] = 0;
 	return (dest);
 }

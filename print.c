@@ -75,13 +75,13 @@ int _fputs(int fd, const char *s)
 int _fprint(int fd, const char *format, ...)
 {
 	va_list ap;
-	int index, printed;
+	int index, print;
 	int is_percent;
 
 	va_start(ap, format);
 	is_percent = 0;
 	index = 0;
-	printed = 0;
+	print = 0;
 	while (format[index])
 	{
 		if (format[index] == '%')
@@ -91,18 +91,18 @@ int _fprint(int fd, const char *format, ...)
 			if (is_percent)
 			{
 				if (format[index] == 'd')
-					printed += _fput_number(fd, va_arg(ap, int));
+					print += _fput_number(fd, va_arg(ap, int));
 				else if (format[index] == 's')
-					printed += _fputs(fd, va_arg(ap, char *));
+					print += _fputs(fd, va_arg(ap, char *));
 				else
-					printed += write(fd, &format[index - 1], 2);
+					print += write(fd, &format[index - 1], 2);
 			}
 			else
-				printed += write(fd, format + index, 1);
+				print += write(fd, format + index, 1);
 			is_percent = 0;
 		}
 		index++;
 	}
 	va_end(ap);
-	return (printed);
+	return (print);
 }

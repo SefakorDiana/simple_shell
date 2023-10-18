@@ -9,13 +9,13 @@
  */
 void _clear_map(map_t *map)
 {
-	int iterator;
+	int iterate;
 
-	iterator = 0;
-	while (iterator < BACKET_SIZE)
+	iterate = 0;
+	while (iterate < BACKET_SIZE)
 	{
-		free_list(map->backets[iterator], _clear_entry);
-		iterator++;
+		free_list(map->backets[iterate], _clear_entry);
+		iterate++;
 	}
 	free(map);
 }
