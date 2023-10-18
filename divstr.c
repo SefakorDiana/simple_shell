@@ -9,21 +9,21 @@
  */
 char *_strslice(const char *line, int start, int end)
 {
-	char *slice;
-	int len, iter;
+	char *strive;
+	int measure, net;
 
 	if (start < 0)
 		start = 0;
-	len = _strlen(line);
-	if (len < end || end < 0)
-		end = len;
-	slice = malloc(sizeof(char) * (end - start + 1));
-	iter = 0;
-	while (start + iter < end)
+	measure = _strlen(line);
+	if (measure < end || end < 0)
+		end = measure;
+	strive = malloc(sizeof(char) * (end - start + 1));
+	net = 0;
+	while (start + net < end)
 	{
-		slice[iter] = line[start + iter];
-		iter++;
+		strive[net] = line[start + net];
+		net++;
 	}
-	slice[iter] = 0;
-	return (slice);
+	strive[net] = 0;
+	return (strive);
 }

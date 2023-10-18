@@ -7,10 +7,10 @@
  */
 int _unsetenv(command_t *command)
 {
-	int len;
+	int car;
 
-	len = _str2dlen(command->arguments);
-	if (len != 2)
+	car = _str2dlen(command->arguments);
+	if (car != 2)
 	{
 		_fprint(2, "%s: Invalid number of arguments\n",
 				_global_states(GET_SHELL_NAME, NULL));

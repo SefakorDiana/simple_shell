@@ -16,7 +16,7 @@
 
 /**
  *struct entry_s -  Structure representing a
- key-value pair for environment variables.
+ *key-value pair for environment variables.
  *@key: The key (name) of the environment variable
  *@value:  The value associated with the environment variable.
  */

@@ -8,7 +8,7 @@
  */
 int main(int ac, char *av[])
 {
-	char *line, *no_comment_line;
+	char *rope, *speech;
 
 	(void)ac;
 	signal(SIGINT, _handle_sigint);
@@ -23,22 +23,22 @@ int main(int ac, char *av[])
 	while (1)
 	{
 		_prompt();
-		_getline(&line);
-		if (!line)
+		_getline(&rope);
+		if (!rope)
 		{
-			free(line);
+			free(rope);
 			break;
 		}
-		no_comment_line = _trim_white_space(line);
-		free(line);
-		line = no_comment_line;
-		no_comment_line = _exclude_comment(line);
-		free(line);
-		line = no_comment_line;
-		_global_states(SET_LINE, &line);
+		speech = _trim_white_space(rope);
+		free(rope);
+		rope = speech;
+		speech = _exclude_comment(rope);
+		free(rope);
+		rope = speech;
+		_global_states(SET_LINE, &rope);
 		_global_states(INCREMENT_LINE_NUMBER, NULL);
-		_semicolon_handler(line);
-		free(line);
+		_semicolon_handler(rope);
+		free(rope);
 	}
 	_enviroment_management(CLEAR_ENV, NULL, NULL);
 	return (_status_management(GET_STATUS, 0));

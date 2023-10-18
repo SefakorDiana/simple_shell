@@ -9,28 +9,28 @@
  */
 int _set_value(map_t *map, const char *key, const char *value)
 {
-	int backet_index;
-	list_t *iterator;
-	entry_t *entry;
+	int space;
+	list_t *circle;
+	entry_t *start;
 
-	backet_index = _get_hash_code(key);
-	iterator = map->backets[backet_index];
-	while (iterator)
+	space = _get_hash_code(key);
+	circle = map->backets[space];
+	while (circle)
 	{
-		entry = iterator->data;
-		if (_strcmp(entry->key, key))
+		start = circle->data;
+		if (_strcmp(start->key, key))
 		{
-			free(entry->value);
-			entry->value = _strdup(value);
+			free(start->value);
+			start->value = _strdup(value);
 			return (1);
 		}
-		iterator = iterator->next;
+		circle = circle->next;
 	}
-	entry = malloc(sizeof(entry_t));
-	if (!entry)
+	start = malloc(sizeof(entry_t));
+	if (!start)
 		return (0);
-	entry->key = _strdup(key);
-	entry->value = _strdup(value);
-	add_to_list(&map->backets[backet_index], entry);
+	start->key = _strdup(key);
+	start->value = _strdup(value);
+	add_to_list(&map->backets[space], start);
 	return (1);
 }
